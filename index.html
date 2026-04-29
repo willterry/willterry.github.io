@@ -1,325 +1,283 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Will Terry</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --ink: #1a1a18;
-      --ink-muted: #6b6b65;
-      --ink-faint: #b0b0a8;
-      --paper: #faf9f6;
-      --rule: #e4e2dc;
-      --accent: #2a4a7f;
-      --accent-light: #eef2f9;
-      --sans: 'DM Mono', monospace;
-      --serif: 'EB Garamond', Georgia, serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--serif);
-      font-size: 18px;
-      line-height: 1.75;
-      color: var(--ink);
-      background: var(--paper);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: var(--paper);
-      border-bottom: 1px solid var(--rule);
-      padding: 0 max(2rem, 5vw);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 56px;
-    }
-
-    .nav-name {
-      font-family: var(--sans);
-      font-size: 13px;
-      letter-spacing: 0.04em;
-      color: var(--ink);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: var(--sans);
-      font-size: 12px;
-      letter-spacing: 0.05em;
-      color: var(--ink-muted);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    .nav-links a:hover { color: var(--ink); }
-
-    /* LAYOUT */
-    main {
-      max-width: 760px;
-      margin: 0 0 0 8%;
-      padding: 0 max(1.5rem, 4vw);
-    }
-
-    section {
-      padding-top: 96px;
-      padding-bottom: 64px;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    section:last-child { border-bottom: none; }
-
-    /* HERO */
-    #about {
-      padding-top: 120px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .hero-label {
-      font-family: var(--sans);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      color: var(--ink-faint);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 400;
-      line-height: 1.15;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-role {
-      font-family: var(--sans);
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-bio {
-      font-size: 17px;
-      color: var(--ink-muted);
-      max-width: 480px;
-    }
-
-    .avatar-box {
-      width: 140px;
-      height: 160px;
-      border-radius: 4px;
-      background: var(--accent-light);
-      border: 1px solid var(--rule);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .avatar-initials {
-      font-family: var(--serif);
-      font-size: 2rem;
-      color: var(--accent);
-      font-style: italic;
-    }
-
-    /* SECTION HEADERS */
-    h2 {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--ink-muted);
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    h2::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--rule);
-    }
-
-    /* PROJECTS */
-    .project-list { display: flex; flex-direction: column; gap: 2rem; }
-
-    .project {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 1.5rem;
-      align-items: start;
-    }
-
-    .project-year {
-      font-family: var(--sans);
-      font-size: 11px;
-      color: var(--ink-faint);
-      padding-top: 4px;
-      min-width: 40px;
-    }
-
-    .project-title {
-      font-size: 17px;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 0.3rem;
-    }
-
-    .project-title a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid var(--rule);
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .project-title a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .project-desc {
-      font-size: 15px;
-      color: var(--ink-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .tag {
-      font-family: var(--sans);
-      font-size: 11px;
-      padding: 2px 8px;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      color: var(--ink-muted);
-      letter-spacing: 0.04em;
-    }
-
-    /* PUBLICATIONS */
-    .pub-list { display: flex; flex-direction: column; gap: 1.75rem; }
-
-    .pub {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 1.5rem;
-      align-items: start;
-    }
-
-    .pub-year {
-      font-family: var(--sans);
-      font-size: 11px;
-      color: var(--ink-faint);
-      padding-top: 4px;
-      min-width: 40px;
-    }
-
-    .pub-title {
-      font-size: 16px;
-      color: var(--ink);
-      margin-bottom: 0.2rem;
-    }
-
-    .pub-title a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid var(--rule);
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .pub-title a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .pub-venue {
-      font-family: var(--sans);
-      font-size: 12px;
-      color: var(--ink-faint);
-      letter-spacing: 0.03em;
-    }
-
-    /* CONTACT */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-    }
-
-    .contact-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .contact-label {
-      font-family: var(--sans);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-    }
-
-    .contact-value {
-      font-size: 15px;
-      color: var(--ink);
-    }
-
-    .contact-value a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.15s;
-    }
-
-    .contact-value a:hover { border-color: var(--accent); }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 3rem 0 2rem;
-      font-family: var(--sans);
-      font-size: 11px;
-      color: var(--ink-faint);
-      letter-spacing: 0.05em;
-    }
-
-    @media (max-width: 560px) {
-      #about { grid-template-columns: 1fr; }
-      .avatar-box { display: none; }
-      .nav-links { gap: 1.2rem; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Will Terry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1a18;
+  --ink-muted: #6b6b65;
+  --ink-faint: #b0b0a8;
+  --paper: #faf9f6;
+  --rule: #e4e2dc;
+  --accent: #2a4a7f;
+  --accent-light: #eef2f9;
+  --sans: 'DM Mono', monospace;
+  --serif: 'EB Garamond', Georgia, serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 max(2rem, 5vw);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+}
+.nav-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--ink); }
+/* LAYOUT */
+main {
+  max-width: 760px;
+  margin: 0 0 0 8%;
+  padding: 0 max(1.5rem, 4vw);
+}
+section {
+  padding-top: 96px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--rule);
+}
+section:last-child { border-bottom: none; }
+/* HERO */
+#about {
+  padding-top: 120px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: start;
+}
+.hero-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.hero-role {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.hero-bio {
+  font-size: 17px;
+  color: var(--ink-muted);
+  max-width: 480px;
+}
+.avatar-box {
+  width: 140px;
+  height: 160px;
+  border-radius: 4px;
+  background: var(--accent-light);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.avatar-initials {
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--accent);
+  font-style: italic;
+}
+/* SECTION HEADERS */
+h2 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-muted);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+h2::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+/* PROJECTS */
+.project-list { display: flex; flex-direction: column; gap: 2rem; }
+.project {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 1.5rem;
+  align-items: start;
+}
+.project-year {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-faint);
+  padding-top: 4px;
+  min-width: 40px;
+}
+.project-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.project-title a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.15s, color 0.15s;
+}
+.project-title a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.project-desc {
+  font-size: 15px;
+  color: var(--ink-muted);
+  margin-bottom: 0.5rem;
+}
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: var(--sans);
+  font-size: 11px;
+  padding: 2px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  color: var(--ink-muted);
+  letter-spacing: 0.04em;
+}
+/* PUBLICATIONS */
+.pub-list { display: flex; flex-direction: column; gap: 1.75rem; }
+.pub {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 1.5rem;
+  align-items: start;
+}
+.pub-year {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-faint);
+  padding-top: 4px;
+  min-width: 40px;
+}
+.pub-title {
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.pub-title a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.15s, color 0.15s;
+}
+.pub-title a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.pub-venue {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-faint);
+  letter-spacing: 0.03em;
+}
+/* CONTACT */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.contact-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.contact-value {
+  font-size: 15px;
+  color: var(--ink);
+}
+.contact-value a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+.contact-value a:hover { border-color: var(--accent); }
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+}
+@media (max-width: 560px) {
+  #about { grid-template-columns: 1fr; }
+  .avatar-box { display: none; }
+  .nav-links { gap: 1.2rem; }
+}
+</style>
 </head>
 <body>
 
 <nav>
-  <a href="#about" class="nav-name">Will Terry (Under Construction)</a>
+  <a href="#about" class="nav-name">Will Terry</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -333,11 +291,10 @@
   <!-- ABOUT -->
   <section id="about">
     <div>
-      <p class="hero-label">Researcher</p>
+      <p class="hero-label">Political Scientist</p>
       <h1>Will Terry, Ph.D.</h1>
-      <p class="hero-role">Public finance and financial forecasting</p>
+      <p class="hero-role">Political economy &middot; Voting rights &middot; Public finance</p>
       <p class="hero-bio">
-        Postdoctoral Fellow, Princeton University<br>
         Ph.D. Political Science, University of California San Diego<br>
         M.S. Economics, California Institute of Technology<br>
         B.A. Mathematics and Economics, Washington University in St. Louis
@@ -356,7 +313,29 @@
       <div class="project">
         <span class="project-year">2026</span>
         <div>
-          <!-- ✏️  UPDATED: href now points to multnomah.html -->
+          <p class="project-title"><a href="#">The Two-Front War: Democratization and its Consequences in the Post-VRA South</a></p>
+          <p class="project-desc">
+            The Voting Rights Act of 1965 produced one of the largest expansions of a left-of-center electorate
+            in American history. Standard democratic theory predicts that such an expansion should shift
+            policy leftward. In the post-VRA South, it didn't. This book explains why — arguing that the VRA
+            transformed Southern electoral competition into a two-front war in which Democrats faced simultaneous
+            pressure from a newly mobilized Black left and an ascending Republican right, and in which the
+            strategic logic of that competition consistently produced conservative outcomes for the region's
+            have-nots. Based on research supported by a National Science Foundation Dissertation Grant.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Southern Politics</span>
+            <span class="tag">Voting Rights</span>
+            <span class="tag">Democratization</span>
+            <span class="tag">Political Economy</span>
+            <span class="tag">Race and Politics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <span class="project-year">2026</span>
+        <div>
           <p class="project-title"><a href="multnomah.html">Multnomah County Public Finance Study</a></p>
           <p class="project-desc">A collection of analyses of the tax and spending patterns of the major taxing bodies in the county.</p>
           <div class="tag-row">
@@ -367,24 +346,21 @@
         </div>
       </div>
 
-      <div class="project">
-        <span class="project-year">2026</span>
-        <div>
-          <p class="project-title"><a href="#">The Two-Front War: Democratization and its Consequences in the Post-VRA South</a></p>
-          <p class="project-desc">A collection of studies on the policy consequenuces of the Voting Rights Act, based on reserarch supported by a National Science Foundation Dissertation Grant.</p>
-          <div class="tag-row">
-            <span class="tag">Southern Politics</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
   <!-- PUBLICATIONS -->
   <section id="publications">
-    <h2>Sample Publications</h2>
+    <h2>Publications</h2>
     <div class="pub-list">
+
+      <div class="pub">
+        <span class="pub-year">2017</span>
+        <div>
+          <p class="pub-title"><a href="#">From the Ballot to the Blackboard? K-12 Public Education Spending in the Postwar U.S. South</a></p>
+          <p class="pub-venue"><em>State and Local Government Review</em></p>
+        </div>
+      </div>
 
       <div class="pub">
         <span class="pub-year">2016</span>
@@ -397,23 +373,23 @@
       <div class="pub">
         <span class="pub-year">2016</span>
         <div>
-          <p class="pub-title"><a href="Kauffman Terry LARR.pdf">Pursuing Costly Reform: The Case of Ecuadorian Natural Resource Management</a></p>
-          <p class="pub-venue">with Craig Kauffman — <em>Latin American Research Review</em></p>
+          <p class="pub-title"><a href="Terry PGI 2016.pdf">Yes, Structurally Low Turnout Favors the Right</a></p>
+          <p class="pub-venue"><em>Politics, Groups and Identities</em></p>
         </div>
       </div>
 
       <div class="pub">
         <span class="pub-year">2016</span>
         <div>
-          <p class="pub-title"><a href="Terry PGI 2016.pdf">Yes, Structurally Low Turnout Favors the Right</a></p>
-          <p class="pub-venue"><em>Politics, Gender and Identity</em></p>
+          <p class="pub-title"><a href="Kauffman Terry LARR.pdf">Pursuing Costly Reform: The Case of Ecuadorian Natural Resource Management</a></p>
+          <p class="pub-venue">with Craig Kauffman — <em>Latin American Research Review</em></p>
         </div>
       </div>
 
       <div class="pub">
         <span class="pub-year">2008</span>
         <div>
-          <p class="pub-title"><a href="Cox Terry LSQ.pdf">Legislative Productivity In the 93d–105th Congresses</a></p>
+          <p class="pub-title"><a href="Cox Terry LSQ.pdf">Legislative Productivity in the 93d–105th Congresses</a></p>
           <p class="pub-venue">with Gary Cox — <em>Legislative Studies Quarterly</em></p>
         </div>
       </div>
@@ -427,15 +403,15 @@
     <div class="contact-grid">
       <div class="contact-item">
         <span class="contact-label">Email</span>
-        <span class="contact-value"><a href="mailto:wjterry@princeton.edu">will.c.terry[at]gmail[dot]com</a></span>
+        <span class="contact-value"><a href="mailto:will.c.terry@gmail.com">will.c.terry@gmail.com</a></span>
       </div>
       <div class="contact-item">
         <span class="contact-label">GitHub</span>
         <span class="contact-value"><a href="https://github.com/willterry" target="_blank">github.com/willterry</a></span>
       </div>
       <div class="contact-item">
-        <span class="contact-label">Resume</span>
-        <span class="contact-value"><a href="terry_resume.pdf" target="_blank">Resume</a></span>
+        <span class="contact-label">CV</span>
+        <span class="contact-value"><a href="terry_resume.pdf" target="_blank">Download CV</a></span>
       </div>
     </div>
   </section>
